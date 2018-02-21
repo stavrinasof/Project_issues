@@ -5,7 +5,7 @@ defmodule Proj_issues.CLI do
     import Proj_issues.Tableformatter ,only: [pretty_print: 2]
 
     @default_count 4
-    def run(argv) do
+    def main(argv) do
         argv
         |> parse_args
         |>process

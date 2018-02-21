@@ -4,6 +4,7 @@ defmodule ProjIssues.MixProject do
   def project do
     [
       app: :proj_issues,
+      escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
@@ -25,6 +26,12 @@ defmodule ProjIssues.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       { :httpoison, "~> 0.13.0" } ,
       { :poison, "~> 3.1" },
+    ]
+  end
+
+  defp escript_config do
+    [
+      main_module: Proj_issues.CLI
     ]
   end
 end
