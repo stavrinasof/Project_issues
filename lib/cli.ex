@@ -2,6 +2,8 @@ defmodule Proj_issues.CLI do
     @doc """
       'argv' can be -h or --help ,which returns :help
       """
+    import Proj_issues.Tableformatter ,only: [pretty_print: 2]
+
     @default_count 4
     def run(argv) do
         argv
@@ -40,6 +42,7 @@ defmodule Proj_issues.CLI do
         |> decode_response()
         |> sort_into_descending_order()
         |>last(count)
+        |>pretty_print(["number","created_at","title"])
     end
 
     def decode_response({:ok ,body}) ,do: body
