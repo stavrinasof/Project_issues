@@ -1,7 +1,7 @@
 defmodule CLITest do
    use ExUnit.Case
    #doctest ProjIssues
-  import Proj_issues.CLI ,only: [parse_args: 1]
+  import Proj_issues.CLI ,only: [parse_args: 1 ,sort_into_descending_order: 1]
 
    #test ":failing" ,do:    assert parse_args(1) == "you passed a list"
   test ":help returned by option parsing with -h and --help options" do
@@ -15,6 +15,15 @@ defmodule CLITest do
 
   test "three values returned if three given" do
     assert parse_args(["user", "project", "99"]) == { "user", "project", 99 }
-    end
- 
+  end
+
+  test "sort descending orders the correct way" do
+    result= sort_into_descending_order(fake_created_list(["c","a","b"]))
+    issues=for issue <-result, do: Map.get(issue,"created_at")
+    assert issues==~w{c b a}
+  end
+
+  defp fake_created_list(values) do
+    for value <-values , do: %{"created_at" =>value,"other_data" => "xxx"}
+  end
 end
