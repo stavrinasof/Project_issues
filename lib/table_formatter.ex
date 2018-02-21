@@ -12,12 +12,12 @@ defmodule Proj_issues.Tableformatter do
         end
     end
     @doc """
-        Given a list of rows, where each row contains a keyed list of columns, return a list containing lists of the data in each column. The `headers` parameter contains the list of columns to extract
-        ## Example
+    Given a list of rows, where each row contains a keyed list of columns, return a list containing lists of the data in each column. The `headers` parameter contains the list of columns to extract
+    ## Example
         iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], %{}),
         ...> Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], %{})]
         iex> Proj_issues.Tableformatter.split_into_columns(list, [ "a", "b", "c" ])
-        [ ["1", "4"], ["2", "5"], ["3", "6"] ]
+            [ ["1", "4"], ["2", "5"], ["3", "6"] ]
     """
     def split_into_columns(rows, headers) do
         for header <- headers do
@@ -28,10 +28,10 @@ defmodule Proj_issues.Tableformatter do
     @doc """
     Return a binary (string) version of our parameter.
     ## Examples
-    iex> Proj_issues.Tableformatter.printable("a")
-    "a"
-    iex> Proj_issues.Tableformatter.printable(99)
-    "99"
+        iex> Proj_issues.Tableformatter.printable("a")
+        "a"
+        iex> Proj_issues.Tableformatter.printable(99)
+        "99"
     """
     def printable(str) when is_binary(str), do: str
     def printable(str), do: to_string(str)
@@ -40,8 +40,8 @@ defmodule Proj_issues.Tableformatter do
         for column <- columns, do: column |> map(&String.length/1) |> max
     end
     @doc """
-        Return a format string that hard codes the widths of a set of columns. We put `" | "` between each column.
-        ## Example
+    Return a format string that hard codes the widths of a set of columns. We put `" | "` between each column.
+    ## Example
         iex> widths = [5,6,99]
         iex> Proj_issues.Tableformatter.format_for(widths)
         "~-5s | ~-6s | ~-99s~n"
@@ -53,9 +53,9 @@ defmodule Proj_issues.Tableformatter do
     @doc """
     Generate the line that goes below the column headings. It is a string of hyphens, with + signs where the vertical bar between the columns goes.
     ## Example
-    iex> widths = [5,6,9]
-    iex> Proj_issues.Tableformatter.separator(widths)
-    "------+--------+----------"
+        iex> widths = [5,6,9]
+        iex> Proj_issues.Tableformatter.separator(widths)
+        "------+--------+----------"
     """
     def separator(column_widths) do
         map_join(column_widths, "-+-", fn width -> List.duplicate("-", width) end)
