@@ -7,6 +7,8 @@ defmodule ProjIssues.MixProject do
       escript: escript_config(),
       version: "0.1.0",
       elixir: "~> 1.6",
+      name: "Proj_issues" ,
+      source_url: "https://github.com/pragdave/issues",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -26,6 +28,8 @@ defmodule ProjIssues.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       { :httpoison, "~> 0.13.0" } ,
       { :poison, "~> 3.1" },
+      { :ex_doc, "~> 0.18.1" },
+      { :earmark, "~> 1.2.4" },
     ]
   end
 
